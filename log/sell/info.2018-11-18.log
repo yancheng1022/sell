@@ -1,0 +1,19 @@
+Starting SellApplication on DESKTOP-10B8PH0 with PID 2656 (E:\allProject\sell\target\classes started by GYC in E:\allProject\sell)
+No active profile set, falling back to default profiles: default
+Tomcat initialized with port(s): 8080 (http)
+Initializing ProtocolHandler ["http-nio-8080"]
+Starting service [Tomcat]
+Starting Servlet Engine: Apache Tomcat/9.0.12
+The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\JAVA\JDK\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\JAVA\JDK\bin;D:\JAVA\JDK\jre\bin;C:\ProgramData\Oracle\Java\javapath;D;\软件\python\;%;ystemRoot%\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;D:\java程序;AVA_HOME%\bin;"D:\JAVA\JDK\jre\bin;";"D:\JAVA\JDK\lib;D:\JAVA\JDK\lib\tools.jar";D:\mys;C:\Pro;C:\Program Files\MySQL\MySQL Utilities 1.6\;D:\maven\apache-maven-3.3.9\bin;C:\WINDOWS\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;D:\Git\cmd;C:\Program Files\TortoiseGit\bin;D:\mvn\bin;D:\svn\bin;D:\tortoiseSVN\bin;D:\node.js\;C:\WINDOWS\system32;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files (x86)\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;D:\dev\Microsoft VS Code\bin;D:\软件\新建文件夹\搜狐影音\5.2.3.12;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Users\28979\AppData\Local\Microsoft\WindowsApps;C:\Users\28979\AppData\Local\GitHubDesktop\bin;C:\Users\28979\AppData\Roaming\npm;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;.]
+Initializing Spring embedded WebApplicationContext
+Root WebApplicationContext: initialization completed in 6843 ms
+Servlet dispatcherServlet mapped to [/]
+Mapping filter: 'characterEncodingFilter' to: [/*]
+Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+Mapping filter: 'formContentFilter' to: [/*]
+Mapping filter: 'requestContextFilter' to: [/*]
+Initializing ExecutorService 'applicationTaskExecutor'
+Starting ProtocolHandler ["http-nio-8080"]
+Using a shared selector for servlet write/read
+Tomcat started on port(s): 8080 (http) with context path ''
+Started SellApplication in 10.786 seconds (JVM running for 15.687)
