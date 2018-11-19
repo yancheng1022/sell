@@ -21,11 +21,11 @@
     <!--定义别名-->
     <typeAliases>
         <typeAlias type="com.kaka.sell.dataobject.ProductCategory" alias="productCategory"></typeAlias>
-
+        <typeAlias type="com.kaka.sell.dataobject.ProductInfo" alias="productInfo"></typeAlias>
     </typeAliases>
     <!--定义mapper文件路径-->
     <mappers>
-        <mapper resource="mapper/productCategoryMapper.xml"></mapper>
-
+        <mapper resource="mapper/ProductCategoryMapper.xml"></mapper>
+        <mapper resource="mapper/ProductInfoMapper.xml"></mapper>
     </mappers>
 </configuration>
