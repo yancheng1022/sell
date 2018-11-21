@@ -11,4 +11,6 @@ public interface ProductInfoMapper {
     void save(ProductInfo productInfo);
     ProductInfo findOne(String productId);
     List<ProductInfo> findAll(int currentPage,int pageSize);
+
+    void update(ProductInfo productInfo);
 }

@@ -1,5 +1,6 @@
 package com.kaka.sell.mapper;
 
+import com.github.pagehelper.PageInfo;
 import com.kaka.sell.dataobject.ProductInfo;
 import com.kaka.sell.service.ProductService;
 import org.junit.Test;
@@ -17,8 +18,8 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class ProductInfoMapperTest {
 
-//    @Autowired
-//    ProductInfoMapper productInfoMapper;
+    @Autowired
+    ProductInfoMapper productInfoMapper;
     @Autowired
     ProductService productService;
     @Test
@@ -34,18 +35,17 @@ public class ProductInfoMapperTest {
 //        productInfo.setCategoryType(3);
 //
 //        productInfoMapper.save(productInfo);
-
+//
 //        List<ProductInfo> byProductStatus = productInfoMapper.findByProductStatus(0);
 //        for (ProductInfo pro : byProductStatus) {
 //            System.out.println(pro);
 //        }
 
-        ProductInfo all = productService.findOne("123");
-        System.out.println(all);
-//        List<ProductInfo> all = productService.findAll(2, 2);
-//        for (ProductInfo p:all) {
-//            System.out.println(p);
-//        }
+//        ProductInfo all = productService.findOne("123");
+//        System.out.println(all);
+
+        PageInfo<ProductInfo> all = productService.findAll(0, 2);
+        System.out.println(all.toString());
 
     }
 }

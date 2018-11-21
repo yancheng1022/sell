@@ -22,10 +22,14 @@
     <typeAliases>
         <typeAlias type="com.kaka.sell.dataobject.ProductCategory" alias="productCategory"></typeAlias>
         <typeAlias type="com.kaka.sell.dataobject.ProductInfo" alias="productInfo"></typeAlias>
+        <typeAlias type="com.kaka.sell.dataobject.OrderMaster" alias="orderMaster"></typeAlias>
+        <typeAlias type="com.kaka.sell.dataobject.OrderDetail" alias="orderDetail"></typeAlias>
     </typeAliases>
     <!--定义mapper文件路径-->
     <mappers>
         <mapper resource="mapper/ProductCategoryMapper.xml"></mapper>
         <mapper resource="mapper/ProductInfoMapper.xml"></mapper>
+        <mapper resource="mapper/OrderMasterMapper.xml"></mapper>
+        <mapper resource="mapper/OrderDetailMapper.xml"></mapper>
     </mappers>
 </configuration>

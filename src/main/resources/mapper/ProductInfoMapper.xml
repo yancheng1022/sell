@@ -22,4 +22,32 @@
         select * from product_info limit #{arg0},#{arg1}
     </select>
 
+    <update id="update">
+        update product_info
+        <set>
+            <if test="productName != null and productName != ''">
+                product_name = #{productName},
+            </if>
+            <if test="productPrice != null">
+                product_price = #{productPrice},
+            </if>
+            <if test="productStock != null">
+                product_stock = #{productStock},
+            </if>
+            <if test="productDescription != null and productDescription != ''">
+                product_description = #{productDescription},
+            </if>
+            <if test="productIcon != null and productIcon != ''">
+                product_icon = #{productIcon},
+            </if>
+            <if test="categoryType != null">
+                category_type = #{categoryType},
+            </if>
+            <if test="productStatus != null">
+                product_status = #{productStatus},
+            </if>
+        </set>
+        where product_id = #{productId}
+    </update>
+
 </mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaka.sell.mapper.OrderDetailMapper">
+
+    <sql id="OrderDetailField">
+      detail_id,product_id,order_id,product_name,product_price,product_quantity,product_icon
+    </sql>
+
+    <insert id="save">
+        insert into order_detail
+        (<include refid="OrderDetailField"></include> )
+        values(#{detailId},#{productId},#{orderId},#{productName},#{productPrice},
+        #{productQuantity},#{productIcon})
+    </insert>
+
+    <select id="findByOrderId" resultType="orderDetail">
+        select * from order_detail where order_id = #{arg0}
+    </select>
+</mapper>
