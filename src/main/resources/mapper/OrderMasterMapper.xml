@@ -58,4 +58,9 @@
       </set>
         where order_id = #{orderId}
     </update>
+
+    <select id="findAll" resultType="orderMaster">
+        select *
+        from order_master
+    </select>
 </mapper>

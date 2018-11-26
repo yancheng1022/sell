@@ -13,4 +13,6 @@ public interface OrderMasterMapper {
     List<OrderMaster> findByBuyerOpenId(@Param("buyerOpenId") String buyerOpenId);
     OrderMaster findOne(String orderId);
     Integer update(OrderMaster orderMaster);
+
+    List<OrderMaster> findAll();
 }

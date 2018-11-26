@@ -15,6 +15,7 @@ import com.kaka.sell.exception.SellException;
 import com.kaka.sell.mapper.OrderDetailMapper;
 import com.kaka.sell.mapper.OrderMasterMapper;
 import com.kaka.sell.service.OrderService;
+import com.kaka.sell.service.PayService;
 import com.kaka.sell.service.ProductService;
 import com.kaka.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,9 @@ public class OrderServiceImpl implements OrderService {
     private OrderDetailMapper orderDetailMapper;
     @Autowired
     private OrderMasterMapper orderMasterMapper;
+
+    @Autowired
+    private PayService payService;
 
     @Override
     @Transactional
@@ -99,10 +103,28 @@ public class OrderServiceImpl implements OrderService {
         return orderDTO;
     }
 
+    //查询某buyerOpenid订单
     @Override
     public PageInfo<OrderDTO> findList(String buyerOpenid, Integer currentPage, Integer pageSize) {
         PageHelper.startPage(currentPage, pageSize);
         List<OrderMaster> orderMasterList = orderMasterMapper.findByBuyerOpenId(buyerOpenid);
+        List<OrderDTO> orderDTOList = new ArrayList<>();
+        for (OrderMaster orderMaster:orderMasterList){
+            OrderDTO orderDTO = new OrderDTO();
+            BeanUtils.copyProperties(orderMaster, orderDTO);
+            orderDTO.setOrderDetailList(orderDetailMapper.findByOrderId(orderMaster.getOrderId()));
+            orderDTOList.add(orderDTO);
+        }
+
+        PageInfo pageInfo = new PageInfo(orderDTOList);
+        return pageInfo;
+    }
+
+    //查询订单列表
+    @Override
+    public PageInfo<OrderDTO> findList(Integer currentPage, Integer pageSize) {
+        PageHelper.startPage(currentPage, pageSize);
+        List<OrderMaster> orderMasterList = orderMasterMapper.findAll();
         List<OrderDTO> orderDTOList = new ArrayList<>();
         for (OrderMaster orderMaster:orderMasterList){
             OrderDTO orderDTO = new OrderDTO();
@@ -145,7 +167,7 @@ public class OrderServiceImpl implements OrderService {
         productService.increaseStock(cartDTOList);
         //（如果已支付）退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())){
-            //TODO
+            payService.refund(orderDTO);
         }
         return orderDTO;
     }

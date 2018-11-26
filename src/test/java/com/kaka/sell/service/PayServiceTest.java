@@ -1,6 +1,5 @@
 package com.kaka.sell.service;
 
-import com.github.pagehelper.PageInfo;
 import com.kaka.sell.dto.OrderDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -11,15 +10,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
 
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-public class OrderServiceTest {
-
+public class PayServiceTest {
     @Autowired
-    private OrderService orderService;
+    private PayService payService;
     @Test
-    public void findAll(){
-        PageInfo<OrderDTO> list = orderService.findList(0, 3);
+    public void create(){
+        OrderDTO orderDTO = new OrderDTO();
+        payService.create(orderDTO);
     }
 }
