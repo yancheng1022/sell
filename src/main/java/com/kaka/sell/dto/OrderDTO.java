@@ -1,10 +1,12 @@
 package com.kaka.sell.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.kaka.sell.dataobject.OrderDetail;
 import com.kaka.sell.enums.OrderStatusEnum;
 import com.kaka.sell.enums.PayStatusEnum;
+import com.kaka.sell.utils.EnumUtil;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -25,4 +27,13 @@ public class OrderDTO {
     private Date createTime;
     private Date updateTime;
     private List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum(){
+        return EnumUtil.getByCode(orderStatus,OrderStatusEnum.class );
+    }
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum(){
+        return EnumUtil.getByCode(payStatus,PayStatusEnum.class );
+    }
 }

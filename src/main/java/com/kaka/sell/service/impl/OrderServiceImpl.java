@@ -1,6 +1,7 @@
 package com.kaka.sell.service.impl;
 
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.kaka.sell.dataobject.OrderDetail;
@@ -123,7 +124,7 @@ public class OrderServiceImpl implements OrderService {
     //查询订单列表
     @Override
     public PageInfo<OrderDTO> findList(Integer currentPage, Integer pageSize) {
-        PageHelper.startPage(currentPage, pageSize);
+        Page page = PageHelper.startPage(currentPage, pageSize);
         List<OrderMaster> orderMasterList = orderMasterMapper.findAll();
         List<OrderDTO> orderDTOList = new ArrayList<>();
         for (OrderMaster orderMaster:orderMasterList){
@@ -133,7 +134,8 @@ public class OrderServiceImpl implements OrderService {
             orderDTOList.add(orderDTO);
         }
 
-        PageInfo pageInfo = new PageInfo(orderDTOList);
+        PageInfo pageInfo = new PageInfo(page);
+        pageInfo.setList(orderDTOList);
         return pageInfo;
     }
 
