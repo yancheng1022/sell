@@ -10,8 +10,8 @@
 
     <insert id="save" parameterType="productInfo">
         insert into product_info
-        (product_id,product_name,product_price,product_stock,product_description,product_icon,category_type)
-        values (#{productId},#{productName},#{productPrice},#{productStock},#{productDescription},#{productIcon},#{categoryType})
+        (product_id,product_name,product_price,product_stock,product_description,product_icon,category_type,product_status)
+        values (#{productId},#{productName},#{productPrice},#{productStock},#{productDescription},#{productIcon},#{categoryType},#{productStatus})
     </insert>
 
     <select id="findOne" resultType="productInfo">
@@ -19,7 +19,7 @@
     </select>
 
     <select id="findAll" resultType="productInfo">
-        select * from product_info limit #{arg0},#{arg1}
+        select * from product_info
     </select>
 
     <update id="update">

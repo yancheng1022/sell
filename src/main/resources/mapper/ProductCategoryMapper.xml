@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kaka.sell.mapper.ProductCategoryMapper">
-    <select id="save">
+    <insert id="save">
         insert into product_category (category_name,category_type) values (#{categoryName},#{categoryType})
-    </select>
+    </insert>
 
     <select id="findByCategoryType" parameterType = "java.util.List" resultType="productCategory">
         select * from product_category where category_type in
@@ -16,11 +16,25 @@
     </select>
 
     <select id="findOne" resultType="productCategory">
-        select * from product_category where category_type = #{arg0}
+        select * from product_category where category_id = #{arg0}
     </select>
 
     <select id="findAll" resultType="productCategory">
         select * from product_category
     </select>
+
+    <update id="update">
+        update product_category
+        <set>
+            <if test="categoryName != null and categoryName != ''">
+                category_name = #{categoryName},
+            </if>
+            <if test="categoryType != null">
+                category_type = #{categoryType},
+            </if>
+
+        </set>
+        where category_id = #{categoryId}
+    </update>
 
 </mapper>

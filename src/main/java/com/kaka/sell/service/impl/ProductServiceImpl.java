@@ -1,5 +1,6 @@
 package com.kaka.sell.service.impl;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.kaka.sell.dataobject.ProductInfo;
@@ -31,17 +32,28 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public PageInfo<ProductInfo> findAll(int currentPage, int pageSize) {
-        PageHelper.startPage(currentPage, pageSize);
+    public PageInfo<ProductInfo> findAllOnSell(int currentPage, int pageSize) {
+        Page page = PageHelper.startPage(currentPage, pageSize);
         List<ProductInfo> allProducts = productInfoMapper.findByProductStatus(0);
-        PageInfo<ProductInfo> page = new PageInfo<>(allProducts);
-        return page;
+        PageInfo<ProductInfo> pageInfo = new PageInfo(page);
+        pageInfo.setList(allProducts);
+        return pageInfo;
     }
 
 
     @Override
     public void save(ProductInfo productInfo) {
-         productInfoMapper.save(productInfo);
+//        productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
+        productInfoMapper.save(productInfo);
+    }
+
+    @Override
+    public PageInfo<ProductInfo> findAll(int currentPage, int pageSize) {
+        Page page = PageHelper.startPage(currentPage, pageSize);
+        List<ProductInfo> allProducts = productInfoMapper.findAll(currentPage, pageSize);
+        PageInfo<ProductInfo> pageInfo = new PageInfo(page);
+        pageInfo.setList(allProducts);
+        return pageInfo;
     }
 
     @Override
@@ -77,5 +89,37 @@ public class ProductServiceImpl implements ProductService {
             productInfo.setProductStock(result);
             productInfoMapper.update(productInfo);
         }
+    }
+
+    @Override
+    public void onSale(String productId) {
+        ProductInfo productInfo = productInfoMapper.findOne(productId);
+        if (productInfo == null){
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (productInfo.getProductStatusEnum() == ProductStatusEnum.UP){
+            throw new SellException(ResultEnum.PRODUCT_STATE_ERROR);
+        }
+        productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
+        productInfoMapper.update(productInfo);
+
+    }
+
+    @Override
+    public void offSale(String productId) {
+        ProductInfo productInfo = productInfoMapper.findOne(productId);
+        if (productInfo == null){
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (productInfo.getProductStatusEnum() == ProductStatusEnum.DOWN){
+            throw new SellException(ResultEnum.PRODUCT_STATE_ERROR);
+        }
+        productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
+        productInfoMapper.update(productInfo);
+    }
+
+    @Override
+    public void update(ProductInfo productInfo) {
+        productInfoMapper.update(productInfo);
     }
 }

@@ -29,7 +29,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public ProductCategory save(ProductCategory productCategory) {
-        return productCategoryMapper.save(productCategory);
+    public void save(ProductCategory productCategory) {
+        productCategoryMapper.save(productCategory);
+    }
+
+    @Override
+    public void update(ProductCategory productCategory) {
+        productCategoryMapper.update(productCategory);
     }
 }

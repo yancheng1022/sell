@@ -16,5 +16,7 @@ public interface ProductCategoryMapper {
     List<ProductCategory> findByCategoryType(List<Integer> categoryTypeList);
     ProductCategory findOne(Integer categoryId);
     List<ProductCategory> findAll();
-    ProductCategory save(ProductCategory productCategory);
+    void save(ProductCategory productCategory);
+
+    void update(ProductCategory productCategory);
 }
