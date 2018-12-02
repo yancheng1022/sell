@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaka.sell.mapper.SellerInfoMapper">
+
+    <select id="findByOpenid" resultType="sellerInfo">
+        select * from seller_info where id = #{arg0}
+    </select>
+
+    <insert id="save">
+        insert into seller_info (id,username,password,openid,create_time,update_time)
+        values (#{sellerId},#{username},#{password},#{openid})
+    </insert>
+
+
+</mapper>
