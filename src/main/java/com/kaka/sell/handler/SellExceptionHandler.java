@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * @Author yc
- * @Date 2018/12/2 15:18
+ * Created by shallowan
  */
 @ControllerAdvice
 public class SellExceptionHandler {

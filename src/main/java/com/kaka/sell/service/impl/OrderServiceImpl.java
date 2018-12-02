@@ -15,9 +15,7 @@ import com.kaka.sell.enums.ResultEnum;
 import com.kaka.sell.exception.SellException;
 import com.kaka.sell.mapper.OrderDetailMapper;
 import com.kaka.sell.mapper.OrderMasterMapper;
-import com.kaka.sell.service.OrderService;
-import com.kaka.sell.service.PayService;
-import com.kaka.sell.service.ProductService;
+import com.kaka.sell.service.*;
 import com.kaka.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -40,6 +38,10 @@ public class OrderServiceImpl implements OrderService {
     private OrderDetailMapper orderDetailMapper;
     @Autowired
     private OrderMasterMapper orderMasterMapper;
+    @Autowired
+    private PushMessageService pushMessageService;
+    @Autowired
+    private WebSocket webSocket;
 
     @Autowired
     private PayService payService;
@@ -84,6 +86,9 @@ public class OrderServiceImpl implements OrderService {
 
         productService.decreaseStock(cartDTOS);
         orderDTO.setOrderId(orderId);
+
+        //发送websocket消息
+        webSocket.sendMessage(orderDTO.getOrderId());
         return orderDTO;
     }
 
@@ -191,6 +196,9 @@ public class OrderServiceImpl implements OrderService {
             log.error("[完结订单] 更新失败 orderMaster = {}",orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_ERROR);
         }
+
+        //推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
         return orderDTO;
 
     }
